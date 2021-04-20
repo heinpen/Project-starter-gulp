@@ -18,18 +18,19 @@ import htmlmin from 'gulp-htmlmin';
 
 // dirrections
 const TEST = 'test',
-  DIST = 'dist';
+  DIST = 'dist',
+  SRC = 'src';
 
 const html = () => {
   return gulp
-    .src('src/*.html')
+    .src(`${SRC}/*.html`)
     .pipe(gulp.dest(`${TEST}`))
     .pipe(sync.stream());
 };
 
 const styles = () => {
   return gulp
-    .src('src/styles/index.css')
+    .src(`${SRC}/styles/index.css`)
     .pipe(postcss([pimport, autoprefixer]))
     .pipe(gulp.dest(`${TEST}/styles`))
     .pipe(sync.stream());
@@ -37,19 +38,19 @@ const styles = () => {
 
 const imagesMain = (dir) => {
   return function images() {
-    return gulp.src('src/images/**/*').pipe(gulp.dest(`${dir}/images`));
+    return gulp.src(`${SRC}/images/**/*`).pipe(gulp.dest(`${dir}/images`));
   };
 };
 
 const fontsMain = (dir) => {
   return function fonts() {
-    return gulp.src('src/fonts/**/*').pipe(gulp.dest(`${dir}/fonts`));
+    return gulp.src(`${SRC}/fonts/**/*`).pipe(gulp.dest(`${dir}/fonts`));
   };
 };
 
 const scripts = () => {
   return gulp
-    .src('src/scripts/index.js')
+    .src(`${SRC}/scripts/index.js`)
     .pipe(
       babel({
         presets: [
@@ -68,7 +69,7 @@ const scripts = () => {
         ],
       })
     )
-    .pipe(prettier)
+    .pipe(prettier())
     .pipe(gulp.dest(`${TEST}/scripts`));
 };
 
@@ -83,11 +84,11 @@ const server = () => {
 };
 
 const watch = () => {
-  gulp.watch('src/*.html', html);
-  gulp.watch('src/styles/**/*.css', styles);
-  gulp.watch('src/scripts/**/*.js', scripts);
-  gulp.watch('src/fonts/**/*', fontsMain(TEST));
-  gulp.watch('src/images/**/*', imagesMain(TEST));
+  gulp.watch(`${SRC}/*.html`, html);
+  gulp.watch(`${SRC}/styles/**/*.css`, styles);
+  gulp.watch(`${SRC}/scripts/**/*.js`, scripts);
+  gulp.watch(`${SRC}/fonts/**/*`, fontsMain(TEST));
+  gulp.watch(`${SRC}/images/**/*`, imagesMain(TEST));
 };
 
 export const build = () => {
