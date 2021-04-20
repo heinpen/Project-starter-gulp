@@ -38,6 +38,11 @@
       "node": true
     },
     "rules": {
+      "strict": [
+        "error",
+        "global"
+      ],
+      "eol-last": 0,
       "one-var": [
         "error",
         "always"
@@ -50,7 +55,6 @@
         "error",
         "windows"
       ],
-      "no-tabs": 0,
       "no-console": [
         "error",
         {
@@ -79,6 +83,7 @@
     "gulp-eslint": "^6.0.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-postcss": "^9.0.0",
+    "gulp-prettier": "^3.0.0",
     "gulp-terser": "^2.0.1",
     "postcss-csso": "^5.0.1",
     "postcss-import": "^14.0.1",

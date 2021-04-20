@@ -11,6 +11,7 @@ import csso from 'postcss-csso';
 // js
 import eslint from 'gulp-eslint';
 import terser from 'gulp-terser';
+import prettier from 'gulp-prettier';
 
 // html
 import htmlmin from 'gulp-htmlmin';
@@ -49,9 +50,6 @@ const fontsMain = (dir) => {
 const scripts = () => {
   return gulp
     .src('src/scripts/index.js')
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError())
     .pipe(
       babel({
         presets: [
@@ -70,6 +68,7 @@ const scripts = () => {
         ],
       })
     )
+    .pipe(prettier)
     .pipe(gulp.dest(`${TEST}/scripts`));
 };
 
@@ -93,13 +92,13 @@ const watch = () => {
 
 export const build = () => {
   return new Promise(function (res, rej) {
-    htmlMinify(),
+    linter(),
+      htmlMinify(),
       cssMinify(),
       jsMinify(),
       imagesMain(DIST)(),
       fontsMain(DIST)(),
       htmlMinify();
-
     res();
   }).then(function buildDone() {
     console.log('building is done');
