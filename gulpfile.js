@@ -92,32 +92,40 @@ const watch = () => {
 };
 
 export const build = () => {
-  return new Promise(function (res, rej) {
-    linter(),
-      htmlMinify(),
-      cssMinify(),
-      jsMinify(),
-      imagesMain(DIST)(),
-      fontsMain(DIST)(),
-      htmlMinify();
-    res();
-  }).then(function buildDone() {
-    console.log('building is done');
-  });
+  buildMain();
 };
 
 export const linter = () => {
-  gulp
-    .src(`${TEST}/scripts/index.js`)
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
+  linterMain();
 };
 
 export default gulp.series(
   gulp.parallel(scripts, styles, html, imagesMain(TEST), fontsMain(TEST)),
   gulp.parallel(watch, server)
 );
+
+// build function
+
+function buildMain() {
+  linterMain(TEST);
+  htmlMinify();
+  cssMinify();
+  jsMinify();
+  imagesMain(DIST)();
+  fontsMain(DIST)();
+  htmlMinify();
+}
+
+// linter function
+
+function linterMain(dir) {
+  if (!dir) dir = SRC;
+  gulp
+    .src(`${dir}/scripts/index.js`)
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+}
 
 // minifying funtions
 function htmlMinify() {

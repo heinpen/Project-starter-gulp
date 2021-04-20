@@ -51,10 +51,7 @@
         "error",
         "always"
       ],
-      "linebreak-style": [
-        "error",
-        "windows"
-      ],
+      "linebreak-style": 0,
       "no-console": [
         "error",
         {
