@@ -1,0 +1,87 @@
+{
+  "name": "name",
+  "version": "0.0.1",
+  "description": "description",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "linter": "gulp linter",
+    "build": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaLiHub/gulp.git"
+  },
+  "author": "SaLi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SaLiHub/gulp/issues"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "ie 8",
+    "ie 9"
+  ],
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 2
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "script"
+    },
+    "extends": "airbnb",
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "rules": {
+      "one-var": [
+        "error",
+        "always"
+      ],
+      "arrow-parens": [
+        "error",
+        "always"
+      ],
+      "linebreak-style": [
+        "error",
+        "windows"
+      ],
+      "no-tabs": 0,
+      "no-console": [
+        "error",
+        {
+          "allow": [
+            "warn",
+            "error"
+          ]
+        }
+      ]
+    }
+  },
+  "homepage": "https://github.com/SaLiHub/gulp#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.15",
+    "@babel/preset-env": "^7.13.15",
+    "autoprefixer": "^9.8.6",
+    "browser-sync": "^2.26.14",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-postcss": "^9.0.0",
+    "gulp-terser": "^2.0.1",
+    "postcss-csso": "^5.0.1",
+    "postcss-import": "^14.0.1",
+    "postcss-uncss": "^0.17.0"
+  }
+}
