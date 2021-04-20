@@ -47,32 +47,30 @@ const fontsMain = (dir) => {
 };
 
 const scripts = () => {
-  return (
-    gulp
-      .src('src/scripts/index.js')
-      .pipe(eslint())
-      // .pipe(eslint.format())
-      // .pipe(eslint.failAfterError())
-      .pipe(
-        babel({
-          presets: [
-            [
-              '@babel/env',
-              {
-                targets: {
-                  edge: '17',
-                  firefox: '60',
-                  chrome: '67',
-                  safari: '11.1',
-                  ie: '9',
-                },
+  return gulp
+    .src('src/scripts/index.js')
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
+    .pipe(
+      babel({
+        presets: [
+          [
+            '@babel/env',
+            {
+              targets: {
+                edge: '17',
+                firefox: '60',
+                chrome: '67',
+                safari: '11.1',
+                ie: '9',
               },
-            ],
+            },
           ],
-        })
-      )
-      .pipe(gulp.dest(`${TEST}/scripts`))
-  );
+        ],
+      })
+    )
+    .pipe(gulp.dest(`${TEST}/scripts`));
 };
 
 const server = () => {
