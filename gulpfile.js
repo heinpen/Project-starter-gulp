@@ -1,3 +1,4 @@
+// import plugins
 import gulp from 'gulp';
 import babel from 'gulp-babel';
 import sync from 'browser-sync';
@@ -21,6 +22,7 @@ const TEST = 'test',
   DIST = 'dist',
   SRC = 'src';
 
+// copy html files from SRC to TEST
 const html = () => {
   return gulp
     .src(`${SRC}/*.html`)
@@ -28,12 +30,17 @@ const html = () => {
     .pipe(sync.stream());
 };
 
+// copy styles from SRC to TEST with few modifications
 const styles = () => {
-  return gulp
-    .src(`${SRC}/styles/index.css`)
-    .pipe(postcss([pimport, autoprefixer]))
-    .pipe(gulp.dest(`${TEST}/styles`))
-    .pipe(sync.stream());
+  return (
+    gulp
+      .src(`${SRC}/styles/index.css`)
+      // 'pimport' resolve path of an @import rule
+      // 'autoprefixer' add or remove vendor prefixes like -webkit and -moz after checking the code
+      .pipe(postcss([pimport, autoprefixer]))
+      .pipe(gulp.dest(`${TEST}/styles`))
+      .pipe(sync.stream())
+  );
 };
 
 const imagesMain = (dir) => {
@@ -48,41 +55,30 @@ const fontsMain = (dir) => {
   };
 };
 
+// copy scripts and modify with bubel
 const scripts = () => {
   return gulp
     .src(`${SRC}/scripts/index.js`)
-    .pipe(
-      babel({
-        presets: [
-          [
-            '@babel/env',
-            {
-              targets: {
-                edge: '17',
-                firefox: '60',
-                chrome: '67',
-                safari: '11.1',
-                ie: '9',
-              },
-            },
-          ],
-        ],
-      })
-    )
+    .pipe(babel())
     .pipe(prettier())
     .pipe(gulp.dest(`${TEST}/scripts`));
 };
 
+// browser sync
 const server = () => {
   sync.init({
+    // more info https://browsersync.io/docs/options#option-ui
     ui: false,
+    // shows any notifications in the browser if true
     notify: false,
+    // dirrectory wich will be displayed in browser
     server: {
       baseDir: TEST,
     },
   });
 };
 
+// change "test" files according to src's when any changes occur
 const watch = () => {
   gulp.watch(`${SRC}/*.html`, html);
   gulp.watch(`${SRC}/styles/**/*.css`, styles);
@@ -91,6 +87,7 @@ const watch = () => {
   gulp.watch(`${SRC}/images/**/*`, imagesMain(TEST));
 };
 
+// executes when type "gulp build" in console
 export const build = () => {
   return new Promise(function (res, rej) {
     buildMain();
@@ -98,35 +95,17 @@ export const build = () => {
   });
 };
 
-export const linter = () => {
-  return new Promise(function (res, rej) {
-    linterMain();
-    res();
-  });
-};
-
-export default gulp.series(
-  gulp.parallel(scripts, styles, html, imagesMain(TEST), fontsMain(TEST)),
-  gulp.parallel(watch, server)
-);
-
 // build function
-
 function buildMain() {
+  // check with eslint by config rules in ".eslintrc.json"
   linterMain(TEST);
+  // minify js, css, html
   htmlMinify();
   cssMinify();
   jsMinify();
+  // transfer images and fonts into folder in variable DIST
   imagesMain(DIST)();
   fontsMain(DIST)();
-  htmlMinify();
-}
-
-// linter function
-
-function linterMain(dir) {
-  if (!dir) dir = SRC;
-  gulp.src(`${dir}/scripts/index.js`).pipe(eslint()).pipe(eslint.format());
 }
 
 // minifying funtions
@@ -141,17 +120,33 @@ function htmlMinify() {
     )
     .pipe(gulp.dest(DIST));
 }
-
 function cssMinify() {
   gulp
     .src(`${TEST}/styles/index.css`)
     .pipe(postcss([csso]))
     .pipe(gulp.dest(`${DIST}/styles`));
 }
-
 function jsMinify() {
   gulp
     .src(`${TEST}/scripts/index.js`)
     .pipe(terser())
     .pipe(gulp.dest(`${DIST}/js`));
 }
+
+export const linter = () => {
+  return new Promise(function (res, rej) {
+    linterMain();
+    res();
+  });
+};
+
+// linter function
+function linterMain(dir) {
+  if (!dir) dir = SRC;
+  gulp.src(`${dir}/scripts/index.js`).pipe(eslint()).pipe(eslint.format());
+}
+
+export default gulp.series(
+  gulp.parallel(scripts, styles, html, imagesMain(TEST), fontsMain(TEST)),
+  gulp.parallel(watch, server)
+);
