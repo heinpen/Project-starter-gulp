@@ -87,7 +87,7 @@ const watch = () => {
   gulp.watch(`${SRC}/images/**/*`, imagesMain(TEST));
 };
 
-// executes when type "gulp build" in console
+// executes when you run "gulp build" in console
 export const build = () => {
   return new Promise(function (res, rej) {
     buildMain();
