@@ -2,7 +2,7 @@
 
 ## Instalation 
 
-1. First of all, you have to have installed Node.js https://nodejs.org.
+1. First of all, you have to have installed [Node.js](https://nodejs.org).
 2. Then copy these files into your dirrectory.
 3. Run in console, where you put these files, 'npm i' to install node_modules.
 ```cmd
