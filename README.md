@@ -1,6 +1,6 @@
 # Empty-project-with-gulp
 
-## Instalation 
+# Instalation 
 
 1. First of all, you have to have installed Node.js https://nodejs.org.
 2. Then copy these files into your dirrectory.
@@ -9,7 +9,7 @@
 npm i
 ```
 
-## Usage 
+# Usage 
 
 - to start work, run 'gulp'
 ```cmd
