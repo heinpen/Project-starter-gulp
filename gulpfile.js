@@ -92,11 +92,17 @@ const watch = () => {
 };
 
 export const build = () => {
-  buildMain();
+  return new Promise(function (res, rej) {
+    buildMain();
+    res();
+  });
 };
 
 export const linter = () => {
-  linterMain();
+  return new Promise(function (res, rej) {
+    linterMain();
+    res();
+  });
 };
 
 export default gulp.series(
@@ -120,11 +126,7 @@ function buildMain() {
 
 function linterMain(dir) {
   if (!dir) dir = SRC;
-  gulp
-    .src(`${dir}/scripts/index.js`)
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
+  gulp.src(`${dir}/scripts/index.js`).pipe(eslint()).pipe(eslint.format());
 }
 
 // minifying funtions

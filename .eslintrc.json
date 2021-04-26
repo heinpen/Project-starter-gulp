@@ -1,0 +1,27 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "script"
+  },
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "no-undef": 0,
+    "no-var": 0,
+    "wrap-iife": ["error", "any"],
+    "strict": ["error", "global"],
+    "eol-last": 0,
+    "one-var": ["error", "always"],
+    "arrow-parens": ["error", "always"],
+    "linebreak-style": 0,
+    "no-console": [
+      "error",
+      {
+        "allow": ["warn", "error"]
+      }
+    ]
+  }
+}
