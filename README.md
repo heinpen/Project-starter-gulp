@@ -12,7 +12,7 @@ npm i
 
 ## Usage 
 
-To start work, run 'gulp'.
+To start work, run 'gulp' in your dirrectory.
 ```cmd
 gulp
 ```
