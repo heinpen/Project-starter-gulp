@@ -11,15 +11,28 @@ npm i
 
 ## Usage 
 
-- to start work, run 'gulp'
+To start work, run 'gulp'.
 ```cmd
 gulp
 ```
-- if project is ready, run 'gulp build'
-it will minify and check with linter for errors
-here i use eslint for linter(config for linter you can find and modify in .eslintrc.json file)
+If project is ready, run 'gulp build' it will minify and check with linter for errors.
 
-- at any time, run 'gulp linter' to check for errors with linter
+##Eslint
+
+I use [eslint](https://eslint.org) for linter(config for linter you can find and modify in .eslintrc.json file).
+
+At any time, run 'gulp linter' to check for errors with linter
+```cmd
+gulp linter
+```
+
+##Prettier
+
+Prettier config can be found in .prettierrc.json file.
+
+##Babel
+
+Babel config can be found in .babelrc.json file.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
