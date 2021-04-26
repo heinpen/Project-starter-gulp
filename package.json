@@ -23,10 +23,6 @@
     "ie 8",
     "ie 9"
   ],
-  "prettier": {
-    "singleQuote": true,
-    "tabWidth": 2
-  },
   "homepage": "https://github.com/SaLiHub/gulp#readme",
   "devDependencies": {
     "@babel/core": "^7.13.15",
