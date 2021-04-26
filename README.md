@@ -8,6 +8,7 @@
 ```cmd
 npm i
 ```
+4. Install [gulp](https://gulpjs.com/docs/en/getting-started/quick-start).
 
 ## Usage 
 
