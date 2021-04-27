@@ -45,13 +45,19 @@ const styles = () => {
 
 const imagesMain = (dir) => {
   return function images() {
-    return gulp.src(`${SRC}/images/**/*`).pipe(gulp.dest(`${dir}/images`));
+    return gulp
+      .src(`${SRC}/images/**/*`)
+      .pipe(gulp.dest(`${dir}/images`))
+      .pipe(sync.stream());
   };
 };
 
 const fontsMain = (dir) => {
   return function fonts() {
-    return gulp.src(`${SRC}/fonts/**/*`).pipe(gulp.dest(`${dir}/fonts`));
+    return gulp
+      .src(`${SRC}/fonts/**/*`)
+      .pipe(gulp.dest(`${dir}/fonts`))
+      .pipe(sync.stream());
   };
 };
 
@@ -61,7 +67,8 @@ const scripts = () => {
     .src(`${SRC}/scripts/index.js`)
     .pipe(babel())
     .pipe(prettier())
-    .pipe(gulp.dest(`${TEST}/scripts`));
+    .pipe(gulp.dest(`${TEST}/scripts`))
+    .pipe(sync.stream());
 };
 
 // browser sync
