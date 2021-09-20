@@ -78,14 +78,14 @@ const server = () => {
     ui: false,
     // shows any notifications in the browser if true
     notify: false,
-    // dirrectory wich will be displayed in browser
+    // directory witch will be displayed in browser
     server: {
       baseDir: TEST,
     },
   });
 };
 
-// change "test" files according to src's when any changes occur
+// change "test" files according to src when any changes occur
 const watch = () => {
   gulp.watch(`${SRC}/*.html`, html);
   gulp.watch(`${SRC}/styles/**/*.css`, styles);
