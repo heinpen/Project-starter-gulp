@@ -1,12 +1,3 @@
-test
-dist
 node_modules
-package-lock.json
 .gitignore
-gulpfile.js
-package.json
-.babelrc.json
-.prettierrc.json
-src/styles
-.eslintrc.json
-.json
+.idea
