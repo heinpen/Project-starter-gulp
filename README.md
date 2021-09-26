@@ -1,4 +1,4 @@
-# Empty-project-with-gulp
+# Project-starter-with-gulp
 
 ## Instalation 
 
