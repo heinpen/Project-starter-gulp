@@ -1,0 +1,27 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  },
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "no-use-before-define": ["error", { "functions": false }],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-unused-expressions": ["error", { "allowTernary": true }],
+    "no-undef": 0,
+    "no-var": 0,
+    "no-console": "off",
+    "wrap-iife": ["error", "any"],
+    "strict": ["error", "global"],
+    "eol-last": 0,
+    "one-var": ["error", "never"],
+    "arrow-parens": ["error", "always"],
+    "linebreak-style": 0,
+    "import/extensions": "off",
+    "lines-between-class-members": ["error", "always"]
+  }
+}
